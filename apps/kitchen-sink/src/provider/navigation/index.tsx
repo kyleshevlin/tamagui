@@ -44,6 +44,14 @@ export function NavigationProvider({ children }: { children: React.ReactNode }) 
     return acc
   }, {})
 
+  const bentoElementScreens = Object.entries(sections['Inputs']).reduce(
+    (acc, component) => {
+      acc[component[0]] = `${component[0]}`
+      return acc
+    },
+    {}
+  )
+
   const linking = useMemo(
     () => ({
       // Linking.createURL('/')
@@ -58,6 +66,7 @@ export function NavigationProvider({ children }: { children: React.ReactNode }) 
           sandbox: 'sandbox',
           bento: 'bento',
           ...bentoScreens,
+          ...bentoElementScreens,
         },
       } as const,
     }),

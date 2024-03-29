@@ -10,6 +10,7 @@ import { TestScreen } from './features/testcases/test-screen'
 import { SectionScreen } from './features/bento/section-screen'
 import { BentoPartScreenItem } from './features/bento/part-screen-items'
 
+console.log('sections', sections)
 const bentoScreenNames = sections.listingData.sections.map(
   ({ sectionName }) => sectionName
 )
@@ -80,9 +81,25 @@ export function Navigation() {
           title: 'Bento',
         }}
       />
-      {bentoScreenNames.map((screenName) => {
-        console.log('screenName', screenName)
 
+      {Object.entries(sections)
+        .filter(([key]) => /^[a-z]+([A-Z][a-z]+)+$/.test(key))
+        .flatMap((sectionKey) =>
+          Object.values(sections[sectionKey] ?? []).map((Component) => {
+            const ComponentElement = Component as React.ElementType
+            return (
+              <Stack.Screen
+                key={Component.name}
+                name={Component.name}
+                component={Component}
+                options={{
+                  title: Component.name,
+                }}
+              />
+            )
+          })
+        )}
+      {bentoScreenNames.map((screenName) => {
         return (
           <Stack.Screen
             name={screenName}
