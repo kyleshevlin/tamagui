@@ -20,8 +20,6 @@ export function BentoPartScreenItem({ navigation }) {
     })
   }, [name, navigation])
 
-  // console.log(Object.values(sections[name]))
-
   return (
     <ScrollView>
       <YStack bg="$color2" p="$3" pt="$6" pb="$8" f={1} space>
