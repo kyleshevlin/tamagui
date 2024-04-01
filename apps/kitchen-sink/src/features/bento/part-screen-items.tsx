@@ -27,8 +27,6 @@ export function BentoPartScreenItem({ navigation }) {
       <YStack bg="$color2" p="$3" pt="$6" pb="$8" f={1} space>
         <YGroup size="$4" separator={<Separator />}>
           {Object.values(sections[name] ?? []).map((Component: any, index) => {
-            console.log('on part screen items', '/' + Component.name)
-
             return (
               <YGroup.Item key={'test'}>
                 <LinkListItem
